@@ -1,0 +1,6 @@
+--database=postgresql
+--skip-test-unit
+--skip-coffee
+--webpack
+-d postgresql
+-T
