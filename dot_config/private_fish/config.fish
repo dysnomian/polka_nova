@@ -1,0 +1,50 @@
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end
+
+##########     Environment     ##########
+
+### Load homebrew environment variables
+# https://docs.brew.sh/Manpage#environment
+if test -x /opt/homebrew/bin/brew
+    eval (/opt/homebrew/bin/brew shellenv)
+end
+
+### Load homebrew completions
+if test -d (brew --prefix)"/share/fish/completions"
+    set -gx fish_complete_path $fish_complete_path (brew --prefix)/share/fish/completions
+end
+
+if test -d (brew --prefix)"/share/fish/vendor_completions.d"
+    set -gx fish_complete_path $fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
+end
+
+### 1Password completions
+
+if test -x (brew --prefix)"/bin/op"
+    op completion fish | source
+end
+
+### Direnv config
+if test -x (brew --prefix)"/bin/direnv"
+    direnv hook fish | source
+end
+
+### Load asdf, an everything version switcher
+source /opt/homebrew/opt/asdf/libexec/asdf.fish
+
+source ~/.config/fish/env.fish
+
+##########     Abbreviations     ##########
+
+source ~/.config/fish/abbr.fish
+
+##########     Secrets     ##########
+
+# source ~/.config/fish/secrets.fish
+
+##########     Functions     ##########
+
+function reload
+    source ~/.config/fish/config.fish
+end

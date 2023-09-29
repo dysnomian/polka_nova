@@ -1,7 +1,5 @@
 # vim: set ft=brewfile
 
-tap "homebrew/cask"
-
 #=============================
 #    Core
 #============================= {{{
@@ -19,4 +17,5 @@ brew 'zplug'
 # 'brew install --cask'
 cask 'google-chrome'
 cask 'firefox'
-cask '1password'
+cask 'slack'
+cask 'zoom'
