@@ -1,0 +1,79 @@
+*.DS_Store
+*.sw[nop]
+.bundle
+.env
+.envrc
+db/*.sqlite3
+log/*.log
+rerun.txt
+tags
+tmp/**/*
+!tmp/cache/.keep
+.tmuxinator
+~/.profile.private
+~/src/**/.vimrc
+~/src/**/.github
+
+# Emacs
+*~
+\#*\#
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+/doc/tags
+*session.vim
+
+# VS Code
+.vscode
+*.code-workspace
+
+# Platform-dependent data
+.DS_Store
+Thumbs.db
+
+# Compiled files
+*.o
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.pch
+a.out
+
+# Credential files
+credentials.*
+credential.*
+
+# Cache directories
+.crystal
+
+# A directory containing Python's virtual environment
+.venv
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Ruby
+*.gem
+*.rbc
+
+# Homebrew
+Brewfile.lock.json
+
+# Tmuxinator
+.tmuxinator.yml
+
+# Ripgrep
+.rgignore
+
+# node is a mess
+node
