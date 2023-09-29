@@ -1,0 +1,29 @@
+" File Explorer configuration
+"
+" Invoked from: ~/.config/nvim/init.vim
+" Installed from: ~/.config/nvim/rc/plugins.vim
+
+" Settings {{{
+
+
+
+" }}}
+
+" Highlighting {{{
+
+
+
+" }}}
+
+" Mappings (see also: ~/.config/nvim/rc/mappings.vim) {{{
+
+nnoremap <Space>nm :Vista!!<CR>
+
+" }}}
+
+" Filetypes (see also: ~/.config/nvim/rc/filetype.vim {{{
+
+
+
+" }}}
+

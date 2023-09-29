@@ -1,0 +1,170 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.018  000.018: --- NVIM STARTING ---
+001.444  001.426: locale set
+003.001  001.557: inits 1
+003.033  000.032: window checked
+003.426  000.393: parsing arguments
+003.935  000.510: expanding arguments
+004.132  000.196: inits 2
+005.080  000.948: init highlight
+006.533  000.324  000.324: sourcing /Users/fmccabe/.polka/config/nvim/rc/filetype.vim
+015.360  003.640  003.640: sourcing /Users/fmccabe/.config/nvim/autoload/plug.vim
+032.535  000.695  000.695: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-coffee-script/ftdetect/coffee.vim
+033.025  000.235  000.235: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-coffee-script/ftdetect/vim-literate-coffeescript.vim
+034.267  000.328  000.328: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-jsx/ftdetect/javascript.vim
+035.114  000.216  000.216: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-markdown/ftdetect/markdown.vim
+036.696  000.221  000.221: sourcing /Users/fmccabe/.local/share/nvim/plugged/rspec.vim/ftdetect/rspec.vim
+048.811  000.589  000.589: sourcing /Users/fmccabe/.local/share/nvim/plugged/neoterm/ftdetect/set_repl_cmd.vim
+049.368  000.238  000.238: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-fugitive/ftdetect/fugitive.vim
+049.842  000.203  000.203: sourcing /Users/fmccabe/.local/share/nvim/plugged/Dockerfile.vim/ftdetect/Dockerfile.vim
+050.195  000.218  000.218: sourcing /Users/fmccabe/.local/share/nvim/plugged/Dockerfile.vim/ftdetect/docker-compose.vim
+050.823  000.412  000.412: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-go/ftdetect/gofiletype.vim
+051.535  000.405  000.405: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-ruby/ftdetect/ruby.vim
+052.030  000.345  000.345: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-ruby/ftdetect/ruby_extra.vim
+052.516  000.253  000.253: sourcing /Users/fmccabe/.local/share/nvim/plugged/rust.vim/ftdetect/rust.vim
+052.904  000.220  000.220: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-elixir/ftdetect/elixir.vim
+053.233  012.564  009.681: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/filetype.vim
+054.114  000.290  000.290: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/ftplugin.vim
+055.287  000.269  000.269: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/indent.vim
+057.444  000.492  000.492: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/syntax/syncolor.vim
+057.639  001.452  000.960: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/syntax/synload.vim
+057.684  002.189  000.737: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/syntax/syntax.vim
+057.861  046.590  025.943: sourcing /Users/fmccabe/.polka/config/nvim/rc/plugins.vim
+058.355  000.318  000.318: sourcing /Users/fmccabe/.polka/config/nvim/rc/mappings.vim
+058.783  000.184  000.184: sourcing /Users/fmccabe/.polka/config/nvim/rc/ruby.vim
+059.461  000.440  000.440: sourcing /Users/fmccabe/.polka/config/nvim/rc/pencil.vim
+060.855  000.363  000.363: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/syntax/syncolor.vim
+063.714  000.481  000.481: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/syntax/syncolor.vim
+070.501  008.918  008.437: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-pureillusion/colors/pureillusion.vim
+071.527  000.608  000.608: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/syntax/nosyntax.vim
+073.926  000.250  000.250: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/syntax/syncolor.vim
+080.962  008.430  008.180: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-pureillusion/colors/pureillusion.vim
+081.151  009.083  000.653: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/syntax/synload.vim
+081.202  010.457  000.766: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/syntax/syntax.vim
+125.484  001.026  001.026: sourcing /Users/fmccabe/.local/share/nvim/plugged/neomake/autoload/neomake/configure.vim
+126.281  000.414  000.414: sourcing /Users/fmccabe/.local/share/nvim/plugged/neomake/autoload/neomake/config.vim
+127.504  000.510  000.510: sourcing /Users/fmccabe/.local/share/nvim/plugged/neomake/autoload/neomake/log.vim
+128.852  000.339  000.339: sourcing /Users/fmccabe/.local/share/nvim/plugged/neomake/autoload/neomake/core.vim
+129.332  001.504  001.165: sourcing /Users/fmccabe/.local/share/nvim/plugged/neomake/autoload/neomake/utils.vim
+130.962  000.595  000.595: sourcing /Users/fmccabe/.local/share/nvim/plugged/neomake/autoload/neomake/compat.vim
+131.603  048.890  044.842: sourcing /Users/fmccabe/.polka/config/nvim/rc/neomake.vim
+132.285  000.078  000.078: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/filetype.vim
+133.080  000.292  000.292: sourcing /Users/fmccabe/.polka/config/nvim/rc/autoformat.vim
+133.640  000.298  000.298: sourcing /Users/fmccabe/.polka/config/nvim/rc/tabline.vim
+134.702  000.379  000.379: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-emoji/autoload/emoji.vim
+139.377  004.242  004.242: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-emoji/autoload/emoji/data.vim
+139.620  134.115  012.342: sourcing /Users/fmccabe/.config/nvim/init.vim
+139.792  000.597: sourcing vimrc file(s)
+140.592  000.457  000.457: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-easy-align/plugin/easy_align.vim
+141.098  000.273  000.273: sourcing /Users/fmccabe/.local/share/nvim/plugged/denite.nvim/plugin/denite.vim
+141.966  000.308  000.308: sourcing /Users/fmccabe/.local/share/nvim/plugged/deoplete.nvim/autoload/deoplete.vim
+142.167  000.851  000.543: sourcing /Users/fmccabe/.local/share/nvim/plugged/deoplete.nvim/plugin/deoplete.vim
+143.475  000.334  000.334: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/autoload/nerdtree.vim
+146.007  001.038  001.038: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/path.vim
+146.649  000.430  000.430: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/menu_controller.vim
+147.123  000.311  000.311: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/menu_item.vim
+147.674  000.368  000.368: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/key_map.vim
+148.349  000.496  000.496: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/bookmark.vim
+149.025  000.474  000.474: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/tree_file_node.vim
+150.182  001.001  001.001: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/tree_dir_node.vim
+150.927  000.558  000.558: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/opener.vim
+151.990  000.692  000.692: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/creator.vim
+152.558  000.320  000.320: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/flag_set.vim
+153.196  000.441  000.441: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/nerdtree.vim
+154.166  000.693  000.693: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/ui.vim
+154.638  000.219  000.219: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/event.vim
+155.103  000.266  000.266: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/lib/nerdtree/notifier.vim
+155.951  000.687  000.687: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/autoload/nerdtree/ui_glue.vim
+161.140  000.320  000.320: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/nerdtree_plugin/exec_menuitem.vim
+162.360  001.131  001.131: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/nerdtree_plugin/fs_menu.vim
+163.290  000.695  000.695: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-devicons/nerdtree_plugin/webdevicons.vim
+164.933  022.554  012.079: sourcing /Users/fmccabe/.local/share/nvim/plugged/nerdtree/plugin/NERD_tree.vim
+167.857  000.312  000.312: sourcing /Users/fmccabe/.local/share/nvim/plugged/denite.nvim/autoload/denite/custom.vim
+168.431  000.380  000.380: sourcing /Users/fmccabe/.local/share/nvim/plugged/denite.nvim/autoload/denite/util.vim
+169.707  004.501  003.810: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-devicons/plugin/webdevicons.vim
+170.938  000.848  000.848: sourcing /Users/fmccabe/.local/share/nvim/plugged/neomake/plugin/neomake.vim
+172.031  000.652  000.652: sourcing /Users/fmccabe/.local/share/nvim/plugged/neoterm/plugin/neoterm.vim
+173.211  000.953  000.953: sourcing /Users/fmccabe/.local/share/nvim/plugged/LanguageClient-neovim/plugin/LanguageClient.vim
+173.890  000.373  000.373: sourcing /Users/fmccabe/.local/share/nvim/plugged/atags.vim/plugin/atags.vim
+175.348  001.241  001.241: sourcing /Users/fmccabe/.local/share/nvim/plugged/tagbar/plugin/tagbar.vim
+176.259  000.602  000.602: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-autoformat/plugin/autoformat.vim
+177.614  001.265  001.265: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-autoformat/plugin/defaults.vim
+178.074  000.247  000.247: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-autoformat/plugin/utils.vim
+179.443  000.596  000.596: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-test/autoload/test.vim
+180.324  002.036  001.439: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-test/plugin/test.vim
+181.347  000.548  000.548: sourcing /Users/fmccabe/.local/share/nvim/plugged/highlighter.nvim/plugin/highlighter.vim
+181.996  000.296  000.296: sourcing /Users/fmccabe/.local/share/nvim/plugged/lightline-buffer/plugin/lightline/buffer.vim
+198.649  016.381  016.381: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-unimpaired/plugin/unimpaired.vim
+201.314  001.210  001.210: sourcing /Users/fmccabe/.local/share/nvim/plugged/editorconfig-vim/plugin/editorconfig.vim
+202.184  000.401  000.401: sourcing /Users/fmccabe/.local/share/nvim/plugged/neco-syntax/plugin/necosyntax.vim
+203.314  000.752  000.752: sourcing /Users/fmccabe/.local/share/nvim/plugged/Colorizer/plugin/ColorizerPlugin.vim
+205.339  000.637  000.637: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-gitgutter/autoload/gitgutter/utility.vim
+206.500  000.348  000.348: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-gitgutter/autoload/gitgutter/highlight.vim
+207.247  003.497  002.513: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-gitgutter/plugin/gitgutter.vim
+207.803  000.323  000.323: sourcing /Users/fmccabe/.local/share/nvim/plugged/searchtasks.vim/plugin/searchtasks.vim
+208.404  000.350  000.350: sourcing /Users/fmccabe/.local/share/nvim/plugged/ack.vim/plugin/ack.vim
+209.164  000.481  000.481: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-rsi/plugin/rsi.vim
+210.147  000.717  000.717: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-endwise/plugin/endwise.vim
+211.097  000.584  000.584: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-projectionist/plugin/projectionist.vim
+212.327  000.819  000.819: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-surround/plugin/surround.vim
+213.363  000.805  000.805: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-fugitive/plugin/fugitive.vim
+214.055  000.443  000.443: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-commentary/plugin/commentary.vim
+214.823  000.365  000.365: sourcing /Users/fmccabe/.local/share/nvim/plugged/scratch.vim/plugin/scratch.vim
+215.614  000.412  000.412: sourcing /Users/fmccabe/.local/share/nvim/plugged/lightline.vim/plugin/lightline.vim
+216.065  000.241  000.241: sourcing /Users/fmccabe/.local/share/nvim/plugged/nyaovim-markdown-preview/plugin/markdown-preview.vim
+216.499  000.219  000.219: sourcing /Users/fmccabe/.local/share/nvim/plugged/nyaovim-popup-tooltip/plugin/nyaovim-popup-tooltip.vim
+216.985  000.201  000.201: sourcing /Users/fmccabe/.local/share/nvim/plugged/rainbow_parentheses.vim/plugin/rainbow_parentheses.vim
+217.526  000.298  000.298: sourcing /Users/fmccabe/.local/share/nvim/plugged/acid.nvim/plugin/acid.vim
+218.698  000.264  000.264: sourcing /Users/fmccabe/.local/share/nvim/plugged/deoplete-go/plugin/deoplete-go.vim
+220.332  000.621  000.621: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-go/autoload/go/config.vim
+220.797  001.848  001.227: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-go/plugin/go.vim
+221.328  000.245  000.245: sourcing /Users/fmccabe/.local/share/nvim/plugged/deoplete-ternjs/plugin/deoplete-ternjs.vim
+222.962  001.345  001.345: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-flow/plugin/flow.vim
+223.429  000.226  000.226: sourcing /Users/fmccabe/.local/share/nvim/plugged/goyo.vim/plugin/goyo.vim
+224.135  000.477  000.477: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-pencil/plugin/pencil.vim
+224.758  000.350  000.350: sourcing /Users/fmccabe/.local/share/nvim/plugged/rust.vim/plugin/cargo.vim
+225.099  000.231  000.231: sourcing /Users/fmccabe/.local/share/nvim/plugged/rust.vim/plugin/rust.vim
+225.900  000.385  000.385: sourcing /Users/fmccabe/.local/share/nvim/plugged/neco-vim/plugin/necovim.vim
+226.447  000.331  000.331: sourcing /Users/fmccabe/.local/share/nvim/plugged/vimproc.vim/plugin/vimproc.vim
+228.237  001.510  001.510: sourcing /Users/fmccabe/.fzf/plugin/fzf.vim
+228.917  000.375  000.375: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-tmux-navigator/plugin/tmux_navigator.vim
+230.202  000.510  000.510: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/gzip.vim
+230.613  000.260  000.260: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/health.vim
+231.235  000.472  000.472: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/man.vim
+232.210  000.884  000.884: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/matchit.vim
+232.724  000.417  000.417: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/matchparen.vim
+233.781  000.846  000.846: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/netrwPlugin.vim
+235.861  000.568  000.568: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/autoload/remote/host.vim
+236.968  000.447  000.447: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/autoload/remote/define.vim
+239.353  004.825  003.810: sourcing /Users/fmccabe/.local/share/nvim/rplugin.vim
+239.377  005.386  000.561: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/rplugin.vim
+239.785  000.288  000.288: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/rrhelper.vim
+240.365  000.467  000.467: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/shada.vim
+240.751  000.270  000.270: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/spellfile.vim
+241.349  000.487  000.487: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/tarPlugin.vim
+241.836  000.377  000.377: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/tohtml.vim
+242.176  000.226  000.226: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/tutor.vim
+243.018  000.733  000.733: sourcing /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/plugin/zipPlugin.vim
+243.060  017.861: loading plugins
+243.313  000.253: loading packages
+245.377  001.748  001.748: sourcing /Users/fmccabe/.local/share/nvim/plugged/alchemist.vim/after/plugin/alchemist.vim
+245.514  000.453: loading after plugins
+245.545  000.031: inits 3
+283.102  037.557: reading ShaDa
+289.311  006.209: clearing screen
+292.279  000.821  000.821: sourcing /Users/fmccabe/.local/share/nvim/plugged/lightline.vim/autoload/lightline.vim
+294.354  000.926  000.926: sourcing /Users/fmccabe/.local/share/nvim/plugged/lightline-buffer/autoload/lightline/buffer.vim
+295.630  000.270  000.270: sourcing /Users/fmccabe/.local/share/nvim/plugged/lightline.vim/autoload/lightline/tab.vim
+298.818  000.890  000.890: sourcing /Users/fmccabe/.local/share/nvim/plugged/lightline.vim/autoload/lightline/colorscheme.vim
+300.345  003.917  003.027: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-pureillusion/autoload/lightline/colorscheme/pureillusion.vim
+306.981  011.737: opening buffers
+307.830  000.403  000.403: sourcing /Users/fmccabe/.local/share/nvim/plugged/vim-gitgutter/autoload/gitgutter.vim
+308.144  000.760: BufEnter autocommands
+308.148  000.004: editing files in windows
+314.125  005.760  005.760: sourcing /Users/fmccabe/.local/share/nvim/plugged/LanguageClient-neovim/autoload/LanguageClient.vim
+343.670  003.203  003.203: sourcing /Users/fmccabe/.local/share/nvim/plugged/neomake/autoload/neomake.vim
