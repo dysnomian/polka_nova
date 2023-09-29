@@ -1,0 +1,7 @@
+# vim: set ft=yaml:
+
+# http://docs.rubygems.org/read/chapter/11
+--- 
+gem: --no-ri --no-rdoc
+benchmark: false
+verbose: true
