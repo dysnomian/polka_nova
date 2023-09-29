@@ -1,0 +1,14 @@
+# vim: set filetype=sh
+
+# zsh specific profile goes here. for everything else, see ~/.profile
+
+# expand abbreviations
+if [ -e "/usr/local/share/zsh-abbr/zsh-abbr.zsh" ]; then
+  source /usr/local/share/zsh-abbr/zsh-abbr.zsh
+fi
+
+# syntax highlighting
+if [ -e "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
