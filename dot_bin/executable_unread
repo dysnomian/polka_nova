@@ -1,0 +1,15 @@
+#!/bin/bash
+
+EMAIL_ADDRESS="liss@eristiccode.com"
+PASSWORD="yeiglgnjztjyojnl"
+
+function atom_feed () {
+  curl -u "$EMAIL_ADDRESS:$PASSWORD" \
+    --silent "https://mail.google.com/mail/feed/atom"
+}
+
+function parse_unread () {
+  atom_feed | sed -n 's:.*<fullcount>\(.*\)</fullcount>.*:\1:p'
+}
+
+parse_unread

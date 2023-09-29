@@ -1,0 +1,139 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+$:.unshift File.dirname(ENV["HOME"] + "/.dotfiles/scripts/lib")
+
+require 'json'
+require 'optparse'
+require 'helper'
+require 'pp'
+require 'vpn'
+require 'applescript_helper'
+
+VERSION = '0.0.1'
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: vpn (start|stop|status| NAME [options]"
+
+  opts.on("-u USERNAME", "--username USERNAME",
+          "VPN username") do |u|
+    options[:username] = u.to_s
+  end
+
+  opts.on("-n", "--name", "VPN name") { |n| options[:name] = n.to_s }
+
+  opts.on("-p PASSWORD", "--password PASSWORD",
+          "VPN password") { |p| options[:password] = p.to_sym }
+
+  opts.on("-n VALUE", "--name VALUE",
+          "Use the specified VPN name.") do |n|
+    options[:name] = n.to_sym
+  end
+  # TODO: verbose mode option
+  # TODO: quiet mode option
+end.parse!
+
+# class Vpn::Connection
+#   attr_reader :opts, :name
+#
+#   def initialize(opts)
+#     @opts = opts
+#     @name = Vpn.set_name(opts)
+#     @status = Vpn::Status.new(opts)
+#     use_shortname if ARGV
+#   end
+#
+#   def start
+#     fail "#{name} is already connected." if status[name] == :connected
+#
+#     puts config.inspect
+#     preserve_pasteboard do
+#       begin
+#         puts "Starting '#{name}'..."
+#
+#         # `scutil --nc start '#{name}'`
+#
+#         sleep(1)
+#         # paste_credentials
+#       end
+#     end
+#   end
+#
+#   def use_shortname
+#     shortname = ARGV.join.downcase
+#     if vpn_shortnames.include?(shortname)
+#       info = config.fetch(shortname)
+#     end
+#     puts info
+#     #
+#     # return unless info
+#     #
+#     # @name     = info.fetch("name")
+#     # @password = info.fetch("password")
+#     # @username = info.fetch("username", nil)
+#     # puts info
+#   end
+#
+#   def status
+#     @status[name]
+#   end
+#
+#   def paste_credentials
+#     if username
+#       paste_username_and_password
+#     else
+#       paste_password
+#     end
+#   end
+#
+#   def paste_username_and_password
+#     AppleScript.paste(username)
+#     AppleScript.hit_tab
+#     AppleScript.paste(password)
+#     AppleScript.hit_enter
+#   end
+#
+#   def paste_password
+#     AppleScript.paste(password)
+#     AppleScript.hit_enter
+#   end
+#
+#   def password
+#     @password ||= opts.fetch(:password, false) || ENV.fetch('DEFAULT_VPN_PASSWORD') do
+#       fail "No password was given, and a default wasn't set."
+#     end
+#   end
+#
+#   def username
+#     @username ||= opts.fetch(:username, nil)
+#   end
+#
+#   def copy_password
+#     ->() { `echo -n #{password} | pbcopy` }
+#   end
+#
+#   def copy_username
+#     ->() { `echo -n #{username} | pbcopy` }
+#   end
+#
+#   def config
+#     @config ||= set_config
+#   end
+#
+#   def set_config
+#     base_config = Polka::Config.new["vpn"]
+#
+#     if ARGV != []
+#       shortname = ARGV.join.downcase
+#       base_config.fetch(shortname, base_config)
+#     end
+#   end
+#
+#   def vpn_shortnames
+#     config.keys
+#   end
+# end
+
+Vpn::Connection.new(options).start

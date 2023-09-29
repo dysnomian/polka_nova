@@ -1,0 +1,22 @@
+#!/usr/bin/env osascript -l JavaScript
+
+var of = Application('Omnifocus')
+var doc = of.defaultDocument
+
+of.includeStandardAdditions = true
+
+
+function addTask() {
+  if (of.running()) {
+    console.log("Good so far. OF found.");
+  } else {
+    of.open();
+    console.log("Good so far. OF opened.");
+  }
+
+  doc.parseTasks({transport: 'text'})
+}
+
+function run(argv) {
+  addTask();
+}

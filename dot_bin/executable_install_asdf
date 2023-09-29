@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Update Homebrew:
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+brew update
+
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Install asdf dependencies:
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+brew install coreutils curl gcc git gpg xz
+
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Install asdf using the Homebrew package manager:
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+brew install asdf
+
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Add asdf.sh to your ~/.zshrc with:
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# echo -e "\n. $(brew --prefix asdf)/asdf.sh" >>~/.zshrc
+
+#
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Install ASDF Plugins
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# See: https://asdf-vm.com/#/plugins-all?id=plugin-list for the full list of plugins.
+#
+
+asdf plugin add babashka
+asdf plugin add clojure
+asdf plugin add elixir
+asdf plugin add erlang
+asdf plugin add golang
+asdf plugin add haskell
+asdf plugin add java
+asdf plugin add mongodb
+asdf plugin add mysql
+asdf plugin add leiningen
+asdf plugin add lua
+asdf plugin add postgres
+asdf plugin add python
+asdf plugin add rabbitmq
+asdf plugin add redis
+asdf plugin add ruby
+asdf plugin add rust
+asdf plugin add terraform
+
+#
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Node.js
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# See https://github.com/asdf-vm/asdf-nodejs/#install for more info.
+#
+asdf plugin add nodejs
+
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Import The Node.js OpenPGP Keys:
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
+
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Install Additional Homebrew Dependencies
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+brew install autoconf automake bison freetype gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip pkg-config re2c zlib
+
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Add `$PKG_CONFIG_PATH` Environment Variable:
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+#export PKG_CONFIG_PATH="$(brew --prefix icu4c)/lib/pkgconfig:$(brew --prefix krb5)/lib/pkgconfig:$(brew --prefix libedit)/lib/pkgconfig:$(brew --prefix libxml2)/lib/pkgconfig:$(brew --prefix openssl)/lib/pkgconfig"
+
+#
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# List Installed Plugins:
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+asdf plugin list
+
+# asdf plugin list
+# golang
+# java
+# nodejs
+# php
+# python
+# ruby
+
+#
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Create a `$HOME/.tool-versions` Configuration File
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# This file defines your global plugins & their installed versions.
+#
+# Note:
+# Whenever .tool-versions file is present in a directory, the tool versions
+# it declares will be used in that directory and any subdirectories.
+#
+{
+    echo -e "golang $(asdf latest golang)
+java $(asdf latest java openjdk)
+python $(asdf latest python)
+ruby $(asdf latest ruby)"
+} >>~/Desktop/asdf-test/.tool-versions
+
+#
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Install Plugin Versions Defined In `$HOME/.tool-versions`:
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+asdf install
+
+#
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Legacy Version Manager Support
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# By adding `legacy_version_file = yes` to the `$HOME/.asdfrc` configuration file,
+# it enables asdf to read the version files used by other version managers.
+# (e.g. `.ruby-version` in the case of Ruby’s `rbenv`.)
+#
+echo -e "legacy_version_file = yes" >>~/Desktop/asdf-test/.asdfrc
+
+#
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Test Each Plugins Installation & Version:
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+which go && go version
+which java && java --version
+which node && node --version
+which python && python -V
+which ruby && ruby --version

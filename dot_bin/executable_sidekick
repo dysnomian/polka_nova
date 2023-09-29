@@ -1,0 +1,147 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'octokit'
+require 'netrc'
+require 'rumoji'
+require 'time'
+
+ENDPOINT = "https://source.datanerd.us/api/v3/"
+ANCHOR   = false
+CONFIG   = Netrc.read(Dir.home + '/.netrc')[URI(ENDPOINT).host]
+
+def assign?
+  ARGV.any? { |a| a == "--assign" }
+end
+
+Octokit.configure do |c|
+  c.api_endpoint = ENDPOINT
+end
+
+def client
+  @client ||= Octokit::Client.new(netrc: true)
+end
+
+class Mention
+  attr_reader :data, :title, :url, :labels, :body, :repo,
+    :user, :id, :number, :created_at, :updated_at
+
+  def initialize(data)
+    @title = data.title
+    @url = data.url
+    @labels = data.labels.map(&:name)
+    @body = data.body
+    @repo = data.repository.full_name
+    @user = data.user.login
+    @id = data.id
+    @number = data.number
+    @created_at = data.created_at
+    @updated_at = data.updated_at
+  end
+
+  def present
+    "#" + to_h[:title] + "\n\n" +
+      stats.map { |k,v| " - #{titleize(k)}: #{v}\n" }.join("") + "\n\n" +
+      to_h[:body]
+  end
+
+  def to_h
+    {
+      title: title,
+      url: url,
+      body: body,
+    }.merge(stats)
+  end
+
+  def to_json
+    JSON.generate(to_h)
+  end
+
+
+  def stats
+    {
+      id: id,
+      number: number,
+      created_at: created_at.strftime("%F%l:%M%P"),
+      updated_at: updated_at.strftime("%F%l:%M%P"),
+      repo: repo,
+      user: user,
+      labels: labels,
+      ticket: ticket
+    }
+  end
+
+  def titleize(unformatted)
+    unformatted.to_s.gsub("_", " ").capitalize
+  end
+
+  def action_needed?
+    if ANCHOR
+      (anchor_is_me? && anchor_needed?) ||
+        (sidekick_is_me? && sidekick_needed?)
+    else
+      sidekick_is_me? && sidekick_needed?
+    end
+  end
+
+  def anchor_is_me?
+    body.include?("anchor: @#{CONFIG[:login]}".downcase)
+  end
+
+  def sidekick_is_me?
+    body.include?("sidekick: @#{CONFIG[:login]}".downcase)
+  end
+
+  def anchor_approved?
+    labels.any? { |l| l == "anchor:approved" }
+  end
+
+  def anchor_needed?
+    labels.none? { |l| l == "anchor:approved" }
+  end
+
+  def sidekick_approved?
+    labels.any? { |l| l == "sidekick:approved" }
+  end
+
+  def sidekick_needed?
+    labels.none? { |l| l == "sidekick:approved" }
+  end
+
+  def ticket
+    /([A-Z]{2,8}-\d+)/.match(title).to_s
+  end
+
+  def assign_ticket
+    puts "Assigning ticket #{ticket} from #{title}."
+    begin
+      `jira assign #{ticket}`
+    rescue => e
+      puts "Couldn't assign ticket #{ticket}: #{e}"
+    end
+  end
+end
+
+def request
+  @request ||= client.list_issues(nil, mentioned: CONFIG[:login], state: "open")
+end
+
+def mentions
+  @mentions ||= request.map { |m| Mention.new(m)}
+end
+
+def sidekick_needed
+  mentions.map { |m| m if m.sidekick_needed? }.compact
+end
+
+def action_needed
+  mentions.map { |m| m if m.action_needed? }.compact
+end
+
+def display_all
+  all =  action_needed.map {|m| m.present}.join("\n\n")
+  IO.popen("mdless", "w") { |f| f.puts Rumoji.decode(all) }
+  sidekick_needed.each { |s| s.assign_ticket } if assign?
+end
+
+display_all

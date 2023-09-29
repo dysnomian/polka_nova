@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+issue = `jira-issue`
+
+if issue
+  puts `jira assign #{issue}`
+else
+  puts "Couldn't parse issue from branch name."
+  exit 0
+end

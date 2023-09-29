@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+alias jira-ticket="jira-cli view (eval jira-issue)"
+alias jira-page="jira-ticket | awk \'FNR == 5 { print $3 } \' | xargs open"

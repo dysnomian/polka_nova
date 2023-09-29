@@ -1,0 +1,83 @@
+#!/bin/bash
+
+# Requires the 1Password command line tool and jq:
+#
+# https://support.1password.com/command-line-getting-started/
+# brew install jq
+
+USERNAME=$USER
+PID_FILE="/var/run/vpn-openconnect.pid"
+OP_SESSION_SUFFIX="my"
+
+op_session_var="OP_SESSION_${OP_SESSION_SUFFIX}"
+
+OP_SESSION="${!op_session_var}"
+OP_PASSWORD_NAME="Chicago VPN"
+
+fetch_password () {
+	# If there's no OP_SESSION_SUFFIX set, sign in again using suffix
+    if [ -z "$OP_SESSION" ]; then
+			echo "No OP_SESSION set. $OP_SESSION"
+        eval $(op signin "$OP_SESSION_SUFFIX")
+    fi
+
+    PASSWORD=$(op get item "$OP_PASSWORD_NAME" | jq '.details.fields[] | select(.designation=="password").value' | tr -d '\n')
+		echo "Got it."
+}
+
+vpn_connect () {
+	sudo openconnect --background --pid-file ${PID_FILE} --user $USERNAME --servercert sha256:4cf8a6534de363fb8ecf6361533547213ff1b403e7e7fa40a8570ba54c151ea0 --authgroup NR-ENG-SPLIT https://vpn.ord.us.nr-net.work
+
+    if [ $? -eq 0 ]; then
+			echo "You are now connected."
+			exit 0
+		else
+			echo "Hmm, something went wrong. I couldn't connect you to the NR-ENG-SPLIT VPN."
+			exit 1
+    fi
+}
+
+vpn_disconnect () {
+    if [ -f ${PID_FILE} ]; then
+        kill -SIGINT $(<"${PID_FILE}") &>/dev/null
+        if [ $? -eq 0 ]; then
+					echo "You're now disconnected."
+            rm ${PID_FILE}
+        fi
+    else
+			echo "Already disconnected."
+			exit 1
+    fi
+}
+
+vpn_status () {
+    if [ -f ${PID_FILE} ]; then
+        ps -p $(<"${PID_FILE}") &>/dev/null
+        if [ $? -eq 0 ]; then
+            echo "connected"
+        else
+            echo "not connected, removing pid file"
+        fi
+    else
+        echo "not connected"
+    fi
+}
+
+case $1 in
+password)
+    fetch_password
+    ;;
+connect)
+    vpn_connect
+    ;;
+disconnect)
+    vpn_disconnect
+    ;;
+reconnect)
+    vpn_disconnect
+    vpn_connect
+    ;;
+status)
+    vpn_status
+    ;;
+esac

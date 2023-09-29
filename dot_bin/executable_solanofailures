@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+def run_id
+  @run_id ||= ARGV.first
+end
+
+def failures
+  @failures ||= fetch_failures
+end
+
+def fetch_failures
+  `solano describe #{run_id} | awk 'FNR > 6 {print $1}'`
+end
+
+def failures_array
+  failures
+    .split("\n")
+    .map {|s| s.concat(":1")} # assumes first line, because Minitest :/
+end
+
+if run_id
+  puts failures_array
+else
+  puts "Run ID required."
+  exit 1
+end

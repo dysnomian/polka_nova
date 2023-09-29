@@ -33,6 +33,9 @@ end
 ### Load asdf, an everything version switcher
 source /opt/homebrew/opt/asdf/libexec/asdf.fish
 
+### Configure 1Password plugins
+source /Users/liss/.config/op/plugins.sh
+
 source ~/.config/fish/env.fish
 
 ##########     Abbreviations     ##########

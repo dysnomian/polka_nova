@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+
+BASH_MAJOR_VERSION="$(echo $BASH_VERSION | cut -c -1)"
+
+if [ "$BASH_MAJOR_VERSION" -lt "4" ]; then
+  echo "Sorry, you need to have Bash 4.0 or higher installed."
+  return 1
+fi
+
+# Silence pushd and popd
+pushd () {
+    command pushd "$@" > /dev/null
+}
+
+popd () {
+    command popd "$@" > /dev/null
+}
+
+function check_upstream_changes {
+  UPSTREAM=${1:-'@{u}'}
+  LOCAL=$(git rev-parse @)
+  REMOTE=$(git rev-parse "$UPSTREAM")
+  BASE=$(git merge-base @ "$UPSTREAM")
+  UPSTREAM_STATUS=""
+
+  pushd $DOTFILES_DIR
+
+  if [ $LOCAL = $REMOTE ]; then
+      UPSTREAM_STATUS="current"
+  elif [ $LOCAL = $BASE ]; then
+      UPSTREAM_STATUS="needs_pull"
+  elif [ $REMOTE = $BASE ]; then
+      UPSTREAM_STATUS="needs_push"
+  else
+      UPSTREAM_STATUS="diverged"
+  fi
+
+  popd
+}
+
+if [ "$1" == "--help" ]; then
+  echo "polka unpushed: show unpushed config changes"
+  echo "polka push: review and push changes"
+  echo "polka env: polka env vars"
+  echo "polka pull: pull polka changes"
+fi
+
+# polka unpushed
+if [ "$1" == "unpushed" ]; then
+  UNPUSHED_CHANGES="$(pushd -q $DOTFILES_DIR; git status -s; popd -q)"
+
+  echo "$UNPUSHED_CHANGES"
+fi
+
+# polka push
+if [ "$1" == "push" ]; then
+  pushd $DOTFILES_DIR
+  git add -p && echo "that's all that's implemented rn"
+  popd
+fi
+
+# polka env
+if [ "$1" == "env" ]; then
+
+  declare -a PolkaEnvVars=( "DOTFILES_DIR" "PROJECTS_DIR" )
+
+  for ev in "${PolkaEnvVars[@]}"
+  do
+    env | grep $ev
+  done
+fi
+
+# polka pull
+if [ "$1" == "pull" ]; then
+  check_upstream_changes
+
+  if [ "$UPSTREAM_STATUS" == "current" ]; then
+    echo "Up to date, no pull needed"
+  elif [ "$UPSTREAM_STATUS" == "needs_pull" ]; then
+    echo "Pulling changes..."
+    pushd -q $DOTFILES_DIR; git pull; popd -q && echo "Done"
+  elif [ "$UPSTREAM_STATUS" == "needs_push" ]; then
+    >&2 echo "You have unpushed changes. Run 'polka push' first."
+    polka unpushed
+  elif [ "$UPSTREAM_STATUS" == "diverged" ]; then
+    >&2 echo "Current branch has diverged. Aborting pull."
+  else
+    >&2 echo "Some kind of error occurred while checking remote status. Aborting."
+  fi
+fi
+
+# polka swap editor
+
+swapHelp="Usage:\n\n    polka swap [selection] [options]\n\nSelections:\n\n    polka swap editor"
+
+if [ "$1" == "swap" ]; then
+  if [ "$2" == "editor" ]; then
+    declare -A editors
+    editors["Neovim"]="/usr/local/bin/nvim"
+    editors["VSCode"]="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+
+    selection=$(echo "${!editors[@]}" | sentaku)
+
+    export EDITOR="${editors[$selection]}"
+    export VISUAL="${editors[$selection]}"
+    echo "Editor set to $selection ($VISUAL)"
+  fi
+else
+  echo -e $swapHelp
+fi
+
+# polka refresh [brewfile, pip, gem]
+if [ "$1" == "refresh" ]; then
+  pushd $DOTFILES_DIR
+
+  polka pull
+  brew bundle
+
+  popd
+fi
+
+# polka --help
+# polka config (dotfiles dir, project dir, repo)

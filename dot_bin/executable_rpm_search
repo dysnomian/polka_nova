@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+
+require 'colorize'
+
+class RpmSearch
+  attr_reader :queries
+
+  def initialize
+    @queries = ARGV
+  end
+
+  def results
+    if output_string
+      puts output_string
+    else
+      puts "No results found for your query.".colorize(:red)
+    end
+  end
+
+
+  private
+
+  def grep_directory(dir)
+    @queries.reduce({}) do |list, q|
+      hits = `grep -rn '#{q}' #{dir}`
+
+      if hits
+        list[dir][q] = hits
+      end
+      list
+    end
+  end
+
+  def filename_hits
+    @filename_hits ||= queries.reduce({}) do |list, q|
+      find_results = `find . -name "*#{q}*"`
+
+      if find_results
+        list[q] = find_results
+      end
+      list
+    end
+  end
+
+  def greppable_directories
+    ["app", "lib", "extraction"]
+  end
+
+  def grep_hits
+    @grep_hits ||= queries.reduce({}) do |list, q|
+      greppable_directories.map { |dir| grep_directory(dir) }
+    end
+    puts grep_hits
+  end
+
+  def output_string
+    output = []
+
+    puts filename_hits.inspect
+    if filename_hits
+      output << filename_hits.map do |q, location|
+        if filename_hits.fetch(q) != ""
+          "Filenames matching #{q}:\n".colorize(:green) +
+            "    #{location}"
+        end
+      end
+    end
+
+    output.compact.join("\n")
+  end
+end
+
+RpmSearch.new.results

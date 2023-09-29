@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+def excitement_level
+  @excitement_level ||= Array(1..23).sample
+end
+
+def zomg
+  case
+  when excitement_level > 10
+    "ZOM" + ("G" * (excitement_level - 10))
+  when excitement_level > 5
+    "ZOMG"
+  when excitement_level > 1
+    "OMG"
+  else
+    "omg"
+  end
+end
+
+def argv_string
+  str = ARGV.join(" ")
+  excitement_level > 1 ? str.upcase : str
+end
+
+def bang_or_1
+  Array(1..4).sample == 1 ? "1" : "!"
+end
+
+def excitement
+  Array(1..excitement_level).reduce("") do |yay, excl|
+    case
+    when yay.length > 17 && excitement_level > 20
+      yay << "omg"
+    when yay.length > 3
+      yay << bang_or_1
+    else
+      yay << "!"
+    end
+
+    yay
+  end
+end
+
+puts "#{zomg} #{argv_string}#{excitement}"

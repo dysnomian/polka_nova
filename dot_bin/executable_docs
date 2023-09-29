@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+if !ARGV || ARGV.empty?
+  puts "docs - Search docs for your repo\nUsage: docs [TERM]"
+  exit 1
+end
+
+if Dir.pwd.include?("rpm_site")
+  puts "Searching docs..."
+  `ag -i "#{ARGV.to_s}" ~/src/rpm_site/doc/ ~/src/rpm_site.wiki`
+else
+  puts "Oops. I don't have a command to find docs for this project."
+end

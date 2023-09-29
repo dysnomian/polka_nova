@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+def current_branch
+  `git rev-parse --abbrev-ref HEAD`
+end
+
+def segments
+  current_branch.split("/")
+end
+
+def issue_name
+  if segments.count == 2 && segments[0].include?("-")
+    segments[0]
+  elsif segments.count == 3 && segments[1].include?("-")
+    segments[1]
+  else
+    puts "Couldn't parse branch name."
+    exit 1
+  end
+end
+
+puts issue_name

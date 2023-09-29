@@ -1,0 +1,32 @@
+#!/bin/bash
+
+PROJECT_FILE=$1
+ORIGINAL_DIR=$(pwd)
+PROJECT_ROOT=""
+MAX_DEPTH=$(dirdepth $HOME/src)
+DEPTH=0
+
+function contains_pfile {
+  while [ ! -e $PROJECT_FILE ]; do
+	DEPTH=$(( $DEPTH + 1))
+	cd ..
+
+	if [ $(pwd) == $HOME/src ]
+	then
+		echo "Specified project file not found." 1>&2
+		exit 1
+	fi
+
+	if [ $DEPTH == $MAX_DEPTH ]
+	then
+		echo "Specified project file not found." 1>&2
+		exit 1
+	fi
+  done
+
+  pwd
+  return 0
+}
+
+
+contains_pfile

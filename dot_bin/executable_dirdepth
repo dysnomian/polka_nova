@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CURRENT_DIR=$(pwd)
+MAX_DEPTH=12
+COUNT=0
+
+function dir_depth {
+
+  while [ "$CURRENT_DIR" != "$HOME/src" -a $COUNT != $MAX_DEPTH ]; do
+    let COUNT=COUNT+1
+    cd ..
+    CURRENT_DIR=$(pwd)
+  done
+}
+
+dir_depth
+echo $COUNT

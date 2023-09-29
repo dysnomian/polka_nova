@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'set'
+require 'shellwords'
+
+module Loggrep
+  extend self
+
+  def prod_workers
+    Set.new(['chi-prod-bgworker-1',
+             'chi-prod-bgworker-2',
+             'chi-prod-bgworker-3',
+             'chi-prod-bgworker-4',
+             'chi-prod-bgworker-5',
+             'chi-prod-bgworker-6',
+             'chi-prod-bgworker-7',
+             'chi-prod-bgworker-8',
+             'chi-prod-bgworker-9',
+             'chi-prod-bgworker-10',
+             'chi-prod-bgworker-11'])
+  end
+
+  def grep(servers, &block)
+    servers.map do |s|
+
+    end
+  end
+end
+
+puts Loggrep.prod_workers.inspect

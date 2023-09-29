@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+# Replace OLDNAME with your dead name, and NEWNAME with your new name.
+# Replace OLDEMAIL with your dead email, and NEWEMAIL with your new email.
+# The "msg-filter" at the bottom lets you filter commit messages too, in case someone referenced your
+# dead name in a commit message.
+# The "tree-filter" is the same but for the entire tree, in case there's an AUTHORS file or a comment
+# that references your name.
+# You can always add more replacement commands to each part just in case there's multiple variants of
+# your dead name, multiple emails to replace, and so on.
+# Be careful when running this script; you should probably check to make sure nothing was messed up
+# in the history once it's done.
+
+DEADNAME="Derek Harms"
+DEADEMAIL="derekharms+github@gmail.com"
+NEWNAME="Liss McCabe"
+NEWEMAIL="liss@eristiccode.com"
+
+if [ git config --get user.name ]
+then
+    NEWNAME="REALNAME"
+    cm="NEW@EMAIL.ORG"
+fi
+git filter-branch -f --env-filter '
+an="$GIT_AUTHOR_NAME"
+am="$GIT_AUTHOR_EMAIL"
+cn="$GIT_COMMITTER_NAME"
+cm="$GIT_COMMITTER_EMAIL"
+
+if [ "$GIT_COMMITTER_EMAIL" = "DEAD@NAME.ORG" ]
+then
+    cn="REALNAME"
+    cm="NEW@EMAIL.ORG"
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "DEAD@NAME.ORG" ]
+then
+    an="REALNAME"
+    am="NEW@EMAIL.ORG"
+fi
+
+export GIT_AUTHOR_NAME="$an"
+export GIT_AUTHOR_EMAIL="$am"
+export GIT_COMMITTER_NAME="$cn"
+export GIT_COMMITTER_EMAIL="$cm"
+' --msg-filter '
+gsed "s/DEADNAME/REALNAME/g;"
+' --tree-filter '
+find . -type f -exec gsed -i "s/DEADNAME/REALNAME/g; s/DEAD@EMAIL.ORG/NEW@EMAIL.ORG/g;" "{}" ";"
+
+# OLDEMAIL="derekharms+github@gmail.com"
+# 
+# git filter-branch -f --env-filter '
+# an="$GIT_AUTHOR_NAME"
+# am="$GIT_AUTHOR_EMAIL"
+# cn="$GIT_COMMITTER_NAME"
+# cm="$GIT_COMMITTER_EMAIL"
+# 
+# if [ "$GIT_COMMITTER_EMAIL" = "DEAD@NAME.ORG" ]
+# then
+#     cn="REALNAME"
+#     cm="NEW@EMAIL.ORG"
+# fi
+# if [ "$GIT_AUTHOR_EMAIL" = "DEAD@NAME.ORG" ]
+# then
+#     an="REALNAME"
+#     am="NEW@EMAIL.ORG"
+# fi
+# 
+# export GIT_AUTHOR_NAME="$an"
+# export GIT_AUTHOR_EMAIL="$am"
+# export GIT_COMMITTER_NAME="$cn"
+# export GIT_COMMITTER_EMAIL="$cm"
+# ' --msg-filter '
+# gsed "s/DEADNAME/REALNAME/g;"
+# ' --tree-filter '
+# find . -type f -exec gsed -i "s/DEADNAME/REALNAME/g; s/DEAD@EMAIL.ORG/NEW@EMAIL.ORG/g;" "{}" ";"

@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+$:.unshift File.dirname(ENV["HOME"] + "/.dotfiles/scripts/lib")
+
+require 'json'
+require 'optparse'
+require 'helper'
+require 'pp'
+require 'vpn'
+require 'vpn/status'
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: vpn_status NAME [options]"
+
+  opts.on("-f FORMAT", "--format FORMAT",
+          "Data return format (pretty, json, ruby)") do |f|
+    options[:format] = f.to_sym
+  end
+
+  opts.on("-j", "--json",
+          "Return status in JSON format") do |f|
+    options[:format] = :json
+  end
+
+  opts.on("-o VALUE", "--only VALUE",
+          "Return only the specified value.") do |f|
+    options[:only] = f.to_sym
+  end
+
+  opts.on("-n NAME", "--name NAME",
+          "Use the specified VPN name.") do |n|
+    options[:name] = n.to_sym
+  end
+end.parse!
+
+Vpn::Status.new(options).print
