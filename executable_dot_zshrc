@@ -1,0 +1,59 @@
+# vim: set filetype=sh
+
+source ~/.zsh.plugins
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+if [ -d "/usr/local/opt/powerlevel10k" ]; then
+    source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+fi
+
+# Use fzf
+if [ -x "/usr/local/bin/fzf" ]; then
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source ~/.shellrc
+
+# zsh completions via homebrew
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# Use ESC to edit the current command line:
+# autoload -U edit-command-line
+# zle -N edit-command-line
+# bindkey '\033' edit-command-line
+
+# Activate direnv
+if [ -x "$(brew --prefix)/bin/direnv" ]; then
+  eval "$(direnv hook zsh)" > /dev/null
+fi
+
+# Use zoxide
+if [ -x "$(brew --prefix)/bin/zoxide" ]; then
+  eval "$(zoxide init zsh)"
+fi
+
+if [ -x "$(brew --prefix)/bin/rbenv" ]; then
+  eval "$(rbenv init - zsh)"
+fi
+
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+. /opt/homebrew/opt/asdf/asdf.sh
