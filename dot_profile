@@ -1,0 +1,13 @@
+# vim: autoindent tabstop=2 shiftwidth=2 expandtab softtabstop=2 filetype=sh
+
+# This file includes any non-shell specific code intended to be loaded in a 
+# login shell.
+
+UNPUSHED_CHANGES="$(pushd -q $DOTFILES_DIR; git status -s; popd -q)"
+
+if [ -n "$UNPUSHED_CHANGES" ]; then
+  echo -e "\033[0;31mYou have unpushed changes to your dotfiles.\033[0m"
+  echo "$UNPUSHED_CHANGES"
+  echo -e "\033[0;31mRun 'polka push' to review changes and push.\033[0m"
+fi
+. "$HOME/.cargo/env"
