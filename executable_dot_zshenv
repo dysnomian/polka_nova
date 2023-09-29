@@ -1,0 +1,5 @@
+# vim: set filetype=sh
+
+# zsh specific env vars go here. For generalized env, see ~/.shell.env
+
+. "$HOME/.cargo/env"
