@@ -1,6 +1,11 @@
 # vim: set filetype=sh
 
-source ~/.zsh.plugins
+if [ -x "$(brew --prefix)/bin/zplug" ]; then
+  export ZPLUG_HOME=/usr/local/opt/zplug
+  source $ZPLUG_HOME/init.zsh
+
+  source ~/.zsh.plugins
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -11,12 +16,12 @@ fi
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-if [ -d "/usr/local/opt/powerlevel10k" ]; then
-    source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+if [ -d "$(brew --prefix)/opt/powerlevel10k" ]; then
+    source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 fi
 
 # Use fzf
-if [ -x "/usr/local/bin/fzf" ]; then
+if [ -x "$(brew --prefix)/bin/fzf" ]; then
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
 
@@ -48,12 +53,4 @@ if [ -x "$(brew --prefix)/bin/zoxide" ]; then
   eval "$(zoxide init zsh)"
 fi
 
-if [ -x "$(brew --prefix)/bin/rbenv" ]; then
-  eval "$(rbenv init - zsh)"
-fi
-
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-. /opt/homebrew/opt/asdf/asdf.sh
+. $(brew --prefix)/opt/asdf/libexec/asdf.sh
