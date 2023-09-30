@@ -2,4 +2,6 @@
 
 # zsh specific env vars go here. For generalized env, see ~/.shell.env
 
-. "$HOME/.cargo/env"
+if [ -x "$(brew --prefix)/bin/cargo" ]; then
+  . "$HOME/.cargo/env" || touch $HOME/.cargo/env 
+fi
