@@ -320,6 +320,7 @@ endif
 
 """ Plugin Configuration
 
+call s:source_rc('chezmoi.vim')
 call s:plugin_config('coc.vim')
 call s:source_rc('easy_align.vim')
 call s:source_rc('emoji.vim')
