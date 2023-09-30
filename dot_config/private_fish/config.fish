@@ -8,6 +8,10 @@ end
 # https://docs.brew.sh/Manpage#environment
 if test -x /opt/homebrew/bin/brew
     eval (/opt/homebrew/bin/brew shellenv)
+else if test -x /usr/local/bin/brew
+    eval (/usr/local/bin/brew shellenv)
+else
+    echo "ERROR: Couldn't find homebrew location!"
 end
 
 ### Load homebrew completions
@@ -31,10 +35,12 @@ if test -x (brew --prefix)"/bin/direnv"
 end
 
 ### Load asdf, an everything version switcher
-source /opt/homebrew/opt/asdf/libexec/asdf.fish
+source (brew --prefix)/opt/asdf/libexec/asdf.fish
 
 ### Configure 1Password plugins
-source /Users/liss/.config/op/plugins.sh
+if test -e "$HOME/.config/op/plugins.sh"
+    source ~/.config/op/plugins.sh
+end
 
 source ~/.config/fish/env.fish
 
